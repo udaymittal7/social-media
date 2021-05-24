@@ -23,7 +23,6 @@ const upload = multer({ storage: multerStorage });
 // Create a post
 router.post('/', auth, upload.single('image'), async (req, res) => {
   try {
-    console.log(req.body);
     const user = await User.findById(req.user.id).select('-password');
     const newPost = new Post({
       user: req.user.id,
@@ -227,7 +226,7 @@ router.put('/comment/:id', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
     const post = await Post.findById(req.params.id);
-
+    console.log(req.body);
     const newComment = {
       text: req.body.text,
       name: user.username,

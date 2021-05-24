@@ -1,0 +1,50 @@
+.commentForm {
+  width: 100%;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  margin: 20px 0;
+}
+
+.commentFormWrapper {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.commentFormImage {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  width: 14%;
+}
+
+.commentFormProfileImg {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.commentFormUsername {
+  font-size: 17px;
+  font-weight: 500;
+  margin: 0 10;
+}
+
+.commentFormInput {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.commentFormInputText {
+  border: none;
+  width: 100%;
+  font-size: 17px;
+}
+
+.commentFormInputText:focus {
+  outline: none;
+}

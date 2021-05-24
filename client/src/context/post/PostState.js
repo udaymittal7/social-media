@@ -126,7 +126,6 @@ const PostState = (props) => {
     };
     try {
       const res = await axios.post('/posts/', formData, config);
-      console.log(res.data);
 
       dispatch({ type: ADD_POST, payload: res.data });
       toast.success('New Post Created', {
@@ -153,12 +152,11 @@ const PostState = (props) => {
   const addComment = async (postId, formData) => {
     const config = {
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'multipart/form-data',
       },
     };
     try {
       const res = await axios.put(`/posts/comment/${postId}`, formData, config);
-      console.log(res.data);
 
       dispatch({ type: ADD_COMMENT, payload: { comments: res.data, postId } });
       toast.success('Comment Added', {
@@ -170,8 +168,7 @@ const PostState = (props) => {
       dispatch({
         type: POST_ERROR,
         payload: {
-          message: err.response.statusText,
-          status: err.response.status,
+          message: err,
         },
       });
       toast.error('Unable to comment on post. Please try again.', {
@@ -186,7 +183,7 @@ const PostState = (props) => {
     try {
       const res = await axios.delete(`/posts/comment/${postId}/${commentId}`);
 
-      dispatch({ type: REMOVE_COMMENT, payload: commentId });
+      dispatch({ type: REMOVE_COMMENT, payload: { postId, commentId } });
       toast.success('Comment Deleted', {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 3000,
@@ -196,8 +193,7 @@ const PostState = (props) => {
       dispatch({
         type: POST_ERROR,
         payload: {
-          message: err.response.statusText,
-          status: err.response.status,
+          message: err,
         },
       });
       toast.error('Unable to delete comment. Please try again.', {

@@ -62,18 +62,22 @@ export default (state, action) => {
               }
             : post
         ),
+        loading: false,
       };
     case REMOVE_COMMENT:
       return {
         ...state,
-        posts: {
-          ...state.posts,
-          comments: state.posts.map((post) =>
-            post.comments.filter(
-              (comment) => comment._id !== action.payload.commentId
-            )
-          ),
-        },
+        posts: state.posts.map((post) =>
+          post._id === action.payload.postId
+            ? {
+                ...post,
+                comments: post.comments.filter(
+                  (comment) => comment._id !== action.payload.commentId
+                ),
+              }
+            : post
+        ),
+        loading: false,
       };
 
     default:

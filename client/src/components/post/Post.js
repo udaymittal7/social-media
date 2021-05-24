@@ -1,16 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './post.css';
 import { Cancel } from '@material-ui/icons';
 import { format } from 'timeago.js';
 import { Link } from 'react-router-dom';
 import PostContext from '../../context/post/postContext';
 import AuthContext from '../../context/auth/authContext';
+import Comment from '../comment/Comment';
+import CommentForm from '../comment/CommentForm';
 
 const Post = ({
   post: { _id, desc, image, likes, comments, createdAt, name, avatar },
 }) => {
   const { addLike, deletePost } = useContext(PostContext);
   const { user } = useContext(AuthContext);
+  const [commentClick, setCommentClick] = useState(false);
 
   const pf = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -62,8 +65,23 @@ const Post = ({
             </span>
           </div>
           <div className='postBottomRight'>
-            <span className='postCommentText'>{comments.length} comments</span>
+            <span
+              className='postCommentText'
+              onClick={(e) => setCommentClick(!commentClick)}
+            >
+              {comments.length} comments
+            </span>
           </div>
+        </div>
+        <div className='postComment'>
+          {commentClick && <CommentForm postId={_id} />}
+          {commentClick &&
+            comments &&
+            comments.map((comment) => {
+              return (
+                <Comment key={comment._id} comment={comment} postId={_id} />
+              );
+            })}
         </div>
       </div>
     </div>
