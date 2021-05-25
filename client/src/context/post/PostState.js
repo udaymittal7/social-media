@@ -152,7 +152,7 @@ const PostState = (props) => {
   const addComment = async (postId, formData) => {
     const config = {
       headers: {
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json',
       },
     };
     try {

@@ -12,6 +12,7 @@ import {
   LOGOUT,
   GET_FRIENDS,
   FOLLOW_USER,
+  UPDATE_USER,
 } from '../types';
 
 export default (state, action) => {
@@ -44,6 +45,11 @@ export default (state, action) => {
                 (following) => following.user !== action.payload.id
               ),
         },
+      };
+    case UPDATE_USER:
+      return {
+        ...state,
+        user: action.payload,
       };
     case LOGIN_START:
     case REGISTER_START:

@@ -116,7 +116,9 @@
   color: white;
 }
 
-.rightbarFollowButton {
+.rightbarFollowButton,
+.rightbarEditButton,
+.rightbarEditCancelButton {
   border: none;
   background-color: #1db954;
   color: black;
@@ -131,15 +133,33 @@
   margin-bottom: 20px;
 }
 
-.rightbarFollowButton:focus {
+.rightbarFollowButton:focus,
+.rightbarEditButton:focus,
+.rightbarEditCancelButton:focus {
   outline: none;
 }
 
-.rightbarFollowButton:hover {
+.rightbarFollowButton:hover,
+.rightbarEditButton:hover,
+.rightbarEditCancelButton:hover {
   background-color: black;
   color: #1db954;
 }
 
-.rightbarFollowButtonText {
+.rightbarFollowButtonText,
+.rightbarEditButtonText,
+.rightbarEditCancelButtonText {
   margin-right: 10px;
+}
+
+.rightbarEditStateInput {
+  border: none;
+  width: 60%;
+  height: 19px;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.rightbarEditStateInput {
+  outline: none;
 }

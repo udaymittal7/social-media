@@ -85,10 +85,6 @@
   position: relative;
 }
 
-.navbarIconItem:hover {
-  color: #1db954;
-}
-
 .navbarItemBadge {
   width: 15px;
   height: 15px;
@@ -114,7 +110,7 @@
 }
 
 .navbarImage:hover {
-  border: 1px solid white;
+  border: 1px solid #1db954;
 }
 
 .navbarLogout {

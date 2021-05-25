@@ -7,10 +7,12 @@ export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const AUTH_ERROR = 'AUTH_ERROR';
+
 export const USER_LOADED = 'USER_LOADED';
 export const GET_USER = 'GET_USER';
 export const GET_FRIENDS = 'GET_FRIENDS';
 export const FOLLOW_USER = 'FOLLOW_USER';
+export const UPDATE_USER = 'UPDATE_USER';
 
 export const GET_POSTS_TIMELINE = 'GET_POSTS_TIMELINE';
 export const GET_POSTS_PROFILE = 'GET_POSTS_PROFILE';

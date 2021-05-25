@@ -16,6 +16,7 @@ import {
   LOGOUT,
   GET_FRIENDS,
   FOLLOW_USER,
+  UPDATE_USER,
 } from '../types';
 import setAuthToken from '../../utils/setAuthToken';
 import { toast } from 'react-toastify';
@@ -183,6 +184,37 @@ const AuthState = (props) => {
     }
   };
 
+  //Update User
+  const updateUser = async (id, formData) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    try {
+      const res = await axios.put(`/users/${id}`, formData, config);
+
+      dispatch({ type: UPDATE_USER, payload: res.data });
+      toast.success('Updated User', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 3000,
+      });
+    } catch (err) {
+      console.error(err);
+      dispatch({
+        type: AUTH_ERROR,
+        payload: {
+          message: err.response.statusText,
+          status: err.response.status,
+        },
+      });
+      toast.error('Unable to update user. Please try again.', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 3000,
+      });
+    }
+  };
+
   // Logout
   const logout = () => {
     dispatch({
@@ -220,6 +252,7 @@ const AuthState = (props) => {
         getUser,
         getFriends,
         followUser,
+        updateUser,
       }}
     >
       {props.children}

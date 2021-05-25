@@ -12,9 +12,8 @@ const CommentForm = ({ postId }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('text', text.current.value);
-    addComment(postId, formData);
+    const formData = text.current.value;
+    addComment(postId, { formData });
     text.current.value = '';
   };
 
