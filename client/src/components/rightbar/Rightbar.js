@@ -64,14 +64,18 @@ const Rightbar = ({ user }) => {
 
   const editSubmitHandler = () => {
     const formData = {};
-    if (school && school.current.value !== '')
-      formData.school = school.current.value;
-    if (college && college.current.value !== '')
-      formData.college = college.current.value;
-    if (title && title.current.value !== '')
-      formData.title = title.current.value;
-    if (company && company.current.value !== '')
-      formData.company = company.current.value;
+    formData.school =
+      (user && user.education.length > 0 && user.education[0].school) ||
+      school.current.value;
+    formData.college =
+      (user && user.education.length > 0 && user.education[0].college) ||
+      college.current.value;
+    formData.title =
+      (user && user.work.length > 0 && user.work[0].title) ||
+      title.current.value;
+    formData.company =
+      (user && user.work.length > 0 && user.work[0].company) ||
+      company.current.value;
     if (mobile && mobile.current.value !== '')
       formData.mobile = mobile.current.value;
     if (address && address.current.value !== '')
@@ -82,12 +86,12 @@ const Rightbar = ({ user }) => {
       formData.relationship = relationship.current.value;
     if (website && website.current.value !== '')
       formData.website = website.current.value;
-    if (facebook && facebook.current.value !== '')
-      formData.facebook = facebook.current.value;
-    if (instagram && instagram.current.value !== '')
-      formData.instagram = instagram.current.value;
-    if (twitter && twitter.current.value !== '')
-      formData.twitter = twitter.current.value;
+    formData.facebook =
+      (user && user.social && user.social.facebook) || facebook.current.value;
+    formData.instagram =
+      (user && user.social && user.social.instagram) || instagram.current.value;
+    formData.twitter =
+      (user && user.social && user.social.twitter) || twitter.current.value;
     updateUser(currentUser && currentUser._id, formData);
     setEdit(!edit);
   };
