@@ -181,7 +181,7 @@ const PostState = (props) => {
   // Delete Comment
   const deleteComment = async (postId, commentId) => {
     try {
-      const res = await axios.delete(`/posts/comment/${postId}/${commentId}`);
+      await axios.delete(`/posts/comment/${postId}/${commentId}`);
 
       dispatch({ type: REMOVE_COMMENT, payload: { postId, commentId } });
       toast.success('Comment Deleted', {
