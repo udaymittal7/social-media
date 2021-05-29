@@ -21,6 +21,7 @@ const Rightbar = ({ user }) => {
     user: currentUser,
     followUser,
     updateUser,
+    getUser,
   } = useContext(AuthContext);
 
   const school = useRef();
@@ -55,6 +56,7 @@ const Rightbar = ({ user }) => {
     if (user) {
       followUser(user._id, followed);
       setFollowed(!followed);
+      getUser(user.username);
     }
   };
 
@@ -92,7 +94,7 @@ const Rightbar = ({ user }) => {
       (user && user.social && user.social.instagram) || instagram.current.value;
     formData.twitter =
       (user && user.social && user.social.twitter) || twitter.current.value;
-    updateUser(currentUser && currentUser._id, formData);
+    updateUser(currentUser && currentUser._id, formData, 'text');
     setEdit(!edit);
   };
 
@@ -135,7 +137,7 @@ const Rightbar = ({ user }) => {
               <span className='rightbarEditButtonText'>
                 {!edit ? 'Edit Profile Information ' : 'Confirm Changes '}
               </span>
-              <Edit classname='rightbarEditButtonIcon' />
+              <Edit className='rightbarEditButtonIcon' />
             </button>
             <button
               className='rightbarEditCancelButton'
@@ -145,7 +147,7 @@ const Rightbar = ({ user }) => {
               <span className='rightbarEditCancelButtonText'>
                 {!edit ? '' : 'Cancel '}
               </span>
-              <Cancel classname='rightbarEditCancelButtonIcon' />
+              <Cancel className='rightbarEditCancelButtonIcon' />
             </button>
           </>
         )}

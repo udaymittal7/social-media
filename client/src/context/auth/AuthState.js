@@ -185,14 +185,15 @@ const AuthState = (props) => {
   };
 
   //Update User
-  const updateUser = async (id, formData) => {
-    // const config = {
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // };
+  const updateUser = async (id, formData, type) => {
+    const config = {
+      headers: {
+        'Content-Type':
+          type === 'text' ? 'application/json' : 'multipart/form-data',
+      },
+    };
     try {
-      const res = await axios.put(`/users/${id}`, formData);
+      const res = await axios.put(`/users/${id}`, formData, config);
 
       dispatch({ type: UPDATE_USER, payload: res.data });
       toast.success('Updated User', {

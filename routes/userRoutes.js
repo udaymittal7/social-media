@@ -2,11 +2,31 @@ const express = require('express');
 const User = require('../models/User');
 const brcypt = require('bcryptjs');
 const auth = require('../middlewares/auth');
+const multer = require('multer');
 
 const router = express.Router();
 
-// Update user
-router.put('/:id', auth, async (req, res) => {
+// Multer upload
+const multerStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/images/person');
+  },
+  filename: (req, file, cb) => {
+    const name = `person-${Date.now()}-${file.originalname}`;
+    cb(null, name);
+  },
+});
+
+const upload = multer({ storage: multerStorage }).fields([
+  {
+    name: 'cover',
+    maxCount: 1,
+  },
+  { name: 'profile', maxCount: 1 },
+]);
+
+// Update user details
+router.put('/:id', auth, upload, async (req, res) => {
   if (req.user.id === req.params.id || req.user.isAdmin) {
     const userFields = {};
 
@@ -17,6 +37,17 @@ router.put('/:id', auth, async (req, res) => {
       } catch (error) {
         return res.status(500).json(err);
       }
+    }
+
+    if (req.files && req.files['cover'] && req.files['cover'].length > 0) {
+      userFields.coverPicture = req.files['cover'][0].path
+        .replace(/\\/g, '/')
+        .substr(14);
+    }
+    if (req.files && req.files['profile'] && req.files['profile'].length > 0) {
+      userFields.profilePicture = req.files['profile'][0].path
+        .replace(/\\/g, '/')
+        .substr(14);
     }
 
     const {
