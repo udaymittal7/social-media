@@ -77,7 +77,7 @@ const AuthState = (props) => {
 
       toast.success('Logged In Successfully', {
         position: toast.POSITION.TOP_CENTER,
-        autoClose: 3000,
+        autoClose: 2000,
       });
     } catch (err) {
       dispatch({
@@ -118,7 +118,7 @@ const AuthState = (props) => {
 
       toast.success('Registered Successfully', {
         position: toast.POSITION.TOP_CENTER,
-        autoClose: 3000,
+        autoClose: 2000,
       });
     } catch (err) {
       dispatch({
@@ -129,7 +129,7 @@ const AuthState = (props) => {
       if (err.response.data.message === 'User with that email already exists') {
         toast.error(err.response.data.message, {
           position: toast.POSITION.TOP_CENTER,
-          autoClose: 5000,
+          autoClose: 2000,
         });
       }
     }
@@ -196,9 +196,9 @@ const AuthState = (props) => {
       const res = await axios.put(`/users/${id}`, formData, config);
 
       dispatch({ type: UPDATE_USER, payload: res.data });
-      toast.success('Updated User', {
+      toast.success('User details updated.', {
         position: toast.POSITION.TOP_CENTER,
-        autoClose: 3000,
+        autoClose: 2000,
       });
     } catch (err) {
       console.error(err);
@@ -211,7 +211,7 @@ const AuthState = (props) => {
       });
       toast.error('Unable to update user. Please try again.', {
         position: toast.POSITION.TOP_CENTER,
-        autoClose: 3000,
+        autoClose: 2000,
       });
     }
   };

@@ -52,19 +52,21 @@ const Rightbar = ({ user }) => {
     if (user) getFriends(username);
   }, [user, username]);
 
-  const followClickHandler = () => {
+  const followClickHandler = (e) => {
+    e.preventDefault();
     if (user) {
       followUser(user._id, followed);
       setFollowed(!followed);
-      getUser(user.username);
     }
   };
 
-  const editClickHandler = () => {
+  const editClickHandler = (e) => {
+    e.preventDefault();
     setEdit(!edit);
   };
 
-  const editSubmitHandler = () => {
+  const editSubmitHandler = (e) => {
+    e.preventDefault();
     const formData = {};
     formData.school =
       (user && user.education.length > 0 && user.education[0].school) ||

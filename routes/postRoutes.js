@@ -32,7 +32,6 @@ router.post('/', auth, upload.single('image'), async (req, res) => {
       avatar: user.profilePicture,
     });
     const post = await newPost.save();
-    console.log(post.image);
     res.status(200).json(post);
   } catch (err) {
     console.error(err.message);
